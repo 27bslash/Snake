@@ -73,19 +73,12 @@ class Snake {
   }
   eat(food) {
     if (
-      collideRectCircle(
-        this.position.x,
-        this.position.y,
-        this.length,
-        this.length,
-        food.position.x,
-        food.position.y,
-        this.length
-      )
+      this.position.x == food.position.x &&
+      this.position.y == food.position.y
     ) {
       food.position = createVector(
-        random(this.length, width - this.length),
-        random(this.length, height - this.length)
+        Math.floor(random() * ((width - 10) / 10 - 10 + 1) + 1) * 10,
+        Math.floor(random() * ((height - 10) / 10 - 10 + 1) + 1) * 10
       );
       this.total++;
     }
@@ -115,11 +108,13 @@ class Snake {
   }
   show() {
     fill(0, 255, 0);
+    noStroke();
     for (let hist of this.history) {
       rect(hist.x, hist.y, this.length, this.length);
     }
     text(this.total, width / 2, 100);
     textSize(40);
+    fill(255);
     rect(this.position.x, this.position.y, this.length, this.length);
   }
 }

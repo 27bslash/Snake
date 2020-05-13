@@ -1,13 +1,13 @@
 class Food {
   constructor() {
     this.position = createVector(
-      random(10, width - 10),
-      random(10, height - 10)
+      Math.floor(random() * ((width - 10) / 10 - 10 + 1) + 1) * 10,
+      Math.floor(random() * ((height - 10) / 10 - 10 + 1) + 1) * 10
     );
   }
-  update() {}
   show() {
+    console.log(this.position.x, this.position.y);
     fill(255, 0, 0);
-    ellipse(this.position.x, this.position.y, 10);
+    rect(this.position.x, this.position.y, 10);
   }
 }
